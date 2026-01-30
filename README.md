@@ -40,6 +40,7 @@ A modern, high-converting landing page for an AI consulting agency. Built with N
 | Animations   | Framer Motion                     |
 | Icons        | Lucide React                      |
 | Fonts        | Geist (via next/font)             |
+| Email        | Resend                            |
 
 ---
 
@@ -48,6 +49,10 @@ A modern, high-converting landing page for an AI consulting agency. Built with N
 ```bash
 # Install dependencies
 npm install
+
+# Set up environment variables
+cp .env.local.example .env.local
+# Edit .env.local with your Resend API key
 
 # Start development server
 npm run dev
@@ -70,6 +75,9 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ```
 app/
+├── api/
+│   └── contact/
+│       └── route.ts  # Contact form API endpoint
 ├── globals.css       # Theme tokens, base styles
 ├── layout.tsx        # Root layout + fonts
 ├── page.tsx          # Landing page (composes sections)
@@ -92,6 +100,38 @@ components/
 public/assets/
 └── logo.svg          # Logo asset
 ```
+
+---
+
+## 📧 Contact Form (Email)
+
+The contact form sends submissions directly to your email via [Resend](https://resend.com).
+
+### Setup
+
+1. **Get a free API key** at [resend.com/api-keys](https://resend.com/api-keys)
+
+2. **Create `.env.local`** in project root:
+   ```bash
+   RESEND_API_KEY=re_your_api_key_here
+   EMAIL_TO=your-email@example.com
+   ```
+
+3. **Restart dev server** — form submissions will now email you!
+
+### Configuration
+
+| Variable         | Description                                      |
+|------------------|--------------------------------------------------|
+| `RESEND_API_KEY` | Your Resend API key                              |
+| `EMAIL_TO`       | Email address to receive submissions             |
+| `EMAIL_FROM`     | Sender address (default: `onboarding@resend.dev`)|
+
+### Custom Domain (Optional)
+
+To send from your own domain (e.g., `contact@nexusai.com`):
+1. Add and verify your domain in [Resend dashboard](https://resend.com/domains)
+2. Update `EMAIL_FROM` in `.env.local`
 
 ---
 
@@ -133,6 +173,16 @@ npx vercel
 ```
 
 Or connect your GitHub repo at [vercel.com](https://vercel.com) for automatic deployments.
+
+### Environment Variables
+
+Set these in your deployment platform (Vercel, Netlify, etc.):
+
+| Variable         | Required | Description                    |
+|------------------|----------|--------------------------------|
+| `RESEND_API_KEY` | Yes      | Resend API key for emails      |
+| `EMAIL_TO`       | Yes      | Your email to receive contacts |
+| `EMAIL_FROM`     | No       | Custom sender address          |
 
 ---
 
