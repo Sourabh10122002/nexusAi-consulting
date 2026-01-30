@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function Navbar() {
                     </Link>
 
                     <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-8">
+                        <div className="ml-10 flex items-center space-x-8">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
@@ -58,13 +59,15 @@ export default function Navbar() {
                             >
                                 Get Started
                             </Link>
+                            <ThemeToggle />
                         </div>
                     </div>
 
-                    <div className="md:hidden">
+                    <div className="flex items-center gap-2 md:hidden">
+                        <ThemeToggle />
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="text-gray-300 hover:text-white p-2"
+                            className="text-muted-foreground hover:text-foreground p-2"
                         >
                             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                         </button>
@@ -78,14 +81,14 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10"
+                    className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/20"
                 >
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                                className="text-muted-foreground hover:text-foreground block px-3 py-2 rounded-md text-base font-medium"
                                 onClick={() => setIsOpen(false)}
                             >
                                 {link.name}

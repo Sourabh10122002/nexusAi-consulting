@@ -14,6 +14,36 @@
   --border: #4f772d;
 }
 
+/* Light mode */
+.light {
+  --background: #f8faf5;
+  --foreground: #1a2e0a;
+  
+  --primary: #4f772d;
+  --secondary: #90a955;
+  --accent: #31572c;
+  --highlight: #4f772d;
+  
+  --muted: #e8f0dc;
+  --muted-foreground: #4f772d;
+  --border: #90a955;
+}
+
+/* Dark mode (explicit) */
+.dark {
+  --background: #050505;
+  --foreground: #ecf39e;
+  
+  --primary: #4f772d;
+  --secondary: #31572c;
+  --accent: #90a955;
+  --highlight: #ecf39e;
+  
+  --muted: #31572c;
+  --muted-foreground: #90a955;
+  --border: #4f772d;
+}
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -29,12 +59,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Offset for fixed navbar */
+section[id] {
+  scroll-margin-top: 80px;
 }
 
 
@@ -45,6 +84,11 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.light .glass {
+  background: rgba(79, 119, 45, 0.05);
+  border: 1px solid rgba(79, 119, 45, 0.1);
+}
+
 .glass-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
   backdrop-filter: blur(16px);
@@ -52,8 +96,19 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
+.light .glass-card {
+  background: linear-gradient(145deg, rgba(79, 119, 45, 0.08) 0%, rgba(79, 119, 45, 0.03) 100%);
+  border: 1px solid rgba(79, 119, 45, 0.12);
+  box-shadow: 0 4px 30px rgba(79, 119, 45, 0.08);
+}
+
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image: linear-gradient(to right, rgba(79, 119, 45, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(79, 119, 45, 0.1) 1px, transparent 1px);
+}
+
+.light .bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(79, 119, 45, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 119, 45, 0.15) 1px, transparent 1px);
 }
