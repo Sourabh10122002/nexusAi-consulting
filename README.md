@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nexus AI — AI Consulting Landing Page
 
-## Getting Started
+A modern, high-converting landing page for an AI consulting agency. Built with Next.js 16, Tailwind CSS v4, and Framer Motion.
 
-First, run the development server:
+![Nexus AI](public/assets/logo.svg)
+
+---
+
+## 🚀 About
+
+**Nexus AI** helps businesses transform with intelligent AI solutions — from custom AI agents and machine learning models to end-to-end process automation. This landing site showcases our capabilities and drives leads.
+
+### Services We Offer
+- **AI Agents** — Autonomous agents for customer service and operations
+- **Machine Learning** — Custom ML models for predictive analytics
+- **Data Analytics** — AI-driven visualization and business intelligence
+- **Full-Stack AI Development** — LLM-powered applications
+- **Process Automation** — Workflow automation at scale
+- **AI Governance** — Ethical, secure, and compliant AI
+
+---
+
+## ✨ Features
+
+- **Dark theme** with green accent palette
+- **Glassmorphism** cards and subtle grid patterns
+- **Smooth animations** via Framer Motion
+- **Responsive design** — mobile-first
+- **SEO-ready** with Next.js metadata API
+- **Optimized fonts** via `next/font` (Geist)
+
+---
+
+## 🛠 Tech Stack
+
+| Layer        | Technology                        |
+|--------------|-----------------------------------|
+| Framework    | Next.js 16 (App Router)           |
+| Styling      | Tailwind CSS v4                   |
+| Animations   | Framer Motion                     |
+| Icons        | Lucide React                      |
+| Fonts        | Geist (via next/font)             |
+
+---
+
+## 📦 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command         | Description                  |
+|-----------------|------------------------------|
+| `npm run dev`   | Start dev server             |
+| `npm run build` | Production build             |
+| `npm run start` | Run production server        |
+| `npm run lint`  | Lint with ESLint             |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🗂 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+├── globals.css       # Theme tokens, base styles
+├── layout.tsx        # Root layout + fonts
+├── page.tsx          # Landing page (composes sections)
+├── icon.svg          # Favicon (auto-detected by Next.js)
+└── logo.svg          # Brand logo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+components/
+├── Navbar.tsx        # Navigation bar with logo
+├── Hero.tsx          # Hero section with CTA
+├── LogoCloud.tsx     # Trusted-by logos
+├── Services.tsx      # Service offerings grid
+├── Industries.tsx    # Industries we serve
+├── Features.tsx      # Why choose us
+├── Process.tsx       # Our process steps
+├── Testimonials.tsx  # Client testimonials
+├── FAQ.tsx           # Frequently asked questions
+├── Contact.tsx       # Contact form / CTA
+└── Footer.tsx        # Footer with links
 
-## Deploy on Vercel
+public/assets/
+└── logo.svg          # Logo asset
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Theming
+
+Colors are defined as CSS variables in `app/globals.css`:
+
+| Variable              | Value       | Usage                |
+|-----------------------|-------------|----------------------|
+| `--background`        | `#050505`   | Page background      |
+| `--foreground`        | `#ecf39e`   | Primary text         |
+| `--primary`           | `#4f772d`   | Buttons, accents     |
+| `--secondary`         | `#31572c`   | Secondary elements   |
+| `--accent`            | `#90a955`   | Highlights           |
+| `--muted-foreground`  | `#90a955`   | Subtle text          |
+
+To customize, edit the `:root` block in `globals.css`.
+
+---
+
+## 🖼 Branding
+
+- **Navbar logo**: Edit `components/Navbar.tsx` — adjust `Image` size or swap the SVG
+- **Favicon**: Replace `app/icon.svg` (Next.js auto-detects `icon.svg` or `icon.png`)
+- **Footer**: Text-only brand in `components/Footer.tsx`
+
+---
+
+## 🚢 Deployment
+
+```bash
+npm run build
+npm run start
+```
+
+### Deploy to Vercel (recommended)
+```bash
+npx vercel
+```
+
+Or connect your GitHub repo at [vercel.com](https://vercel.com) for automatic deployments.
+
+---
+
+## 📄 License
+
+MIT — use freely for your own projects.
+
+---
+
+**Built with ❤️ by the Nexus AI team**
