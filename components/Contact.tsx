@@ -54,7 +54,6 @@ export default function Contact() {
         }
     };
 
-export default function Contact() {
     return (
         <section id="contact" className="py-24 relative overflow-hidden">
             {/* Background Gradients */}
