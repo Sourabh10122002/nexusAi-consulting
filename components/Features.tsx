@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 const features = [
     "Custom LLM Fine-tuning",
@@ -55,23 +56,26 @@ export default function Features() {
                     className="relative"
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-3xl transform -rotate-6" />
-                    <div className="glass-card rounded-2xl p-8 relative border border-primary/20">
-                        <div className="space-y-6">
-                            {[1, 2, 3].map((_, i) => (
-                                <div key={i} className="flex gap-4 items-center p-4 rounded-xl bg-background/60 border border-primary/10">
-                                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent opacity-80" />
-                                    <div className="flex-1 space-y-2">
-                                        <div className="h-2 w-3/4 bg-primary/20 rounded-full" />
-                                        <div className="h-2 w-1/2 bg-primary/20 rounded-full" />
-                                    </div>
+                    <div className="relative rounded-2xl overflow-hidden border border-primary/20">
+                        <Image
+                            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+                            alt="AI Technology Visualization"
+                            width={600}
+                            height={500}
+                            className="w-full h-auto object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                        <div className="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-xl">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-3xl font-bold text-foreground mb-1">+400%</p>
+                                    <p className="text-muted-foreground text-sm">Efficiency Increase</p>
                                 </div>
-                            ))}
-                        </div>
-                        {/* Overlay Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent rounded-2xl" />
-                        <div className="absolute bottom-8 left-8 right-8">
-                            <p className="text-3xl font-bold text-foreground mb-1">+400%</p>
-                            <p className="text-muted-foreground">Efficiency Increase</p>
+                                <div className="text-right">
+                                    <p className="text-2xl font-bold text-primary">98%</p>
+                                    <p className="text-muted-foreground text-sm">Client Satisfaction</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </motion.div>

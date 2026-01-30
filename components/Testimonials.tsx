@@ -2,22 +2,26 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import Image from "next/image";
 
 const testimonials = [
     {
         quote: "Nexus AI completely transformed our customer support. Our response times dropped by 80% within the first month.",
         author: "Sarah Jenkins",
         role: "CTO, TechFlow",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
     },
     {
         quote: "The strategic insights provided by their custom ML models helped us identify revenue streams we didn't know existed.",
         author: "Michael Chang",
         role: "Director of Ops, DataSphere",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
     },
     {
         quote: "Professional, knowledgeable, and efficient. The best investment we've made in our automation infrastructure.",
         author: "Elena Rodriguez",
         role: "CEO, FutureScale",
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80",
     },
 ];
 
@@ -49,9 +53,19 @@ export default function Testimonials() {
                             >
                                 <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/20" />
                                 <p className="text-muted-foreground mb-6 italic text-lg leading-relaxed">"{t.quote}"</p>
-                                <div>
-                                    <p className="text-foreground font-bold">{t.author}</p>
-                                    <p className="text-primary text-sm">{t.role}</p>
+                                <div className="flex items-center gap-4">
+                                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary/30">
+                                        <Image
+                                            src={t.avatar}
+                                            alt={t.author}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                    <div>
+                                        <p className="text-foreground font-bold">{t.author}</p>
+                                        <p className="text-primary text-sm">{t.role}</p>
+                                    </div>
                                 </div>
                             </div>
                         ))}

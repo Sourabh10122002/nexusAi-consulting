@@ -2,10 +2,18 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
+import Image from "next/image";
+
+// Replace with your Calendly URL
+const CALENDLY_URL = "https://calendly.com/your-username";
 
 export default function Hero() {
+    const openCalendly = () => {
+        window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+    };
+
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-background">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 pb-16 bg-background">
             {/* Background Effects */}
             <div className="absolute inset-0 w-full h-full bg-grid-pattern opacity-10" />
             <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-background/80 to-background" />
@@ -39,6 +47,7 @@ export default function Hero() {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={openCalendly}
                             className="group px-8 py-4 bg-primary text-white rounded-full font-semibold shadow-lg shadow-primary/25 flex items-center gap-2 hover:bg-accent transition-all"
                         >
                             Schedule Consultation
@@ -53,6 +62,27 @@ export default function Hero() {
                             View Case Studies
                         </motion.button>
                     </div>
+
+                    {/* Hero Image - Dashboard Mockup */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="mt-16 relative"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
+                        <div className="relative rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10">
+                            <Image
+                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"
+                                alt="AI Analytics Dashboard"
+                                width={1200}
+                                height={600}
+                                className="w-full h-auto object-cover"
+                                priority
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent" />
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
 
