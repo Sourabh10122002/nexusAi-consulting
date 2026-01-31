@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, HelpCircle } from "lucide-react";
 
 const faqs = [
     {
@@ -21,71 +21,91 @@ const faqs = [
         question: "Can these agents integrate with our existing software?",
         answer: "Our agents are designed to be interoperable. We build custom integrations for major CRMs, ERPs, and internal databases using secure API connections."
     },
+    {
+        question: "What industries do you serve?",
+        answer: "We specialize in Fintech, Healthcare, and E-commerce, but our agent architectures are industry-agnostic and can be adapted to Legal, Real Estate, and more."
+    },
+    {
+        question: "Do I need technical expertise?",
+        answer: "No. We build seamless interfaces so your team can interact with agents using natural language. We handle all the technical complexity under the hood."
+    }
 ];
 
 export default function FAQ() {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
-        <section className="py-24 bg-gradient-to-t from-background via-secondary/5 to-background">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center text-foreground">
-                    Frequently <span className="text-primary">Asked Questions</span>
-                </h2>
+        <section className="relative py-32 bg-background overflow-hidden">
+            {/* Decorative Background */}
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
 
-                <motion.div
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    variants={{
-                        hidden: { opacity: 0 },
-                        show: {
-                            opacity: 1,
-                            transition: {
-                                staggerChildren: 0.1
-                            }
-                        }
-                    }}
-                    className="space-y-4"
-                >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-primary/10 text-primary"
+                    >
+                        <HelpCircle className="w-6 h-6" />
+                    </motion.div>
+                    <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                        Got Questions? <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-highlight">
+                            We've Got Answers.
+                        </span>
+                    </h2>
+                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                        Everything you need to know about our AI solutions, simplified.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {faqs.map((faq, index) => (
                         <motion.div
                             key={index}
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                show: { opacity: 1, y: 0 }
-                            }}
-                            className="glass-card rounded-xl overflow-hidden border border-white/5"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className={`group relative rounded-2xl border transition-all duration-300 ${activeIndex === index
+                                    ? "bg-primary/5 border-primary/30 shadow-lg shadow-primary/5"
+                                    : "bg-card/50 border-border/50 hover:border-primary/20 hover:bg-card"
+                                }`}
                         >
                             <button
-                                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full px-6 py-4 flex items-center justify-between text-left group"
+                                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                                className="w-full text-left p-8 focus:outline-none"
                             >
-                                <span className={`font-semibold text-lg transition-colors ${openIndex === index ? 'text-primary' : 'text-foreground'}`}>
-                                    {faq.question}
-                                </span>
-                                <div className={`p-2 rounded-full transition-colors ${openIndex === index ? 'bg-primary/20 text-primary' : 'bg-transparent text-muted-foreground group-hover:text-foreground'}`}>
-                                    {openIndex === index ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                                <div className="flex justify-between items-start gap-4">
+                                    <h3 className={`text-xl font-semibold transition-colors ${activeIndex === index ? "text-primary" : "text-foreground"}`}>
+                                        {faq.question}
+                                    </h3>
+                                    <span className={`shrink-0 flex items-center justify-center w-8 h-8 rounded-full border transition-all ${activeIndex === index
+                                            ? "bg-primary text-white border-primary rotate-45"
+                                            : "bg-transparent border-border text-muted-foreground group-hover:border-primary group-hover:text-primary"
+                                        }`}>
+                                        <Plus className="w-5 h-5 transition-transform" />
+                                    </span>
                                 </div>
+                                <AnimatePresence>
+                                    {activeIndex === index && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                                            animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                                            exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                                            className="overflow-hidden"
+                                        >
+                                            <p className="text-muted-foreground leading-relaxed">
+                                                {faq.answer}
+                                            </p>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </button>
-
-                            <AnimatePresence initial={false}>
-                                {openIndex === index && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                                    >
-                                        <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
-                                            {faq.answer}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );
