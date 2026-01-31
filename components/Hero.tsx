@@ -13,7 +13,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 pb-16 bg-background">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 pb-16">
             {/* Background Effects */}
             <div className="absolute inset-0 w-full h-full bg-grid-pattern opacity-10" />
             <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-background/80 to-background" />
